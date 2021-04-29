@@ -15,6 +15,7 @@ Vue.use(Vuetify);
 
 ///Router
 import Dashboard from "./views/Dashboard";
+import Login from "./views/auth/Login";
 import Products from "./views/Products";
 
 const router = new VueRouter({
@@ -24,6 +25,11 @@ const router = new VueRouter({
             path: "/",
             name: "dashboard",
             component: Dashboard
+        },
+        {
+            path: "/login",
+            name: "login",
+            component: Login
         },
         {
             path: "/products",
