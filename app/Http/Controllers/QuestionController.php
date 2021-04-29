@@ -32,7 +32,7 @@ class QuestionController extends Controller
     {
         //auth()->user()->question()->create($request->all());
         Question::create($request->all());
-        return response('Deleted', Response::HTTP_CREATED);
+        return response('Created', Response::HTTP_CREATED);
     }
 
     /**
