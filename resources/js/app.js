@@ -1,43 +1,40 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
+/* resources > js > app.js */
 
 require("./bootstrap");
 
-//added
-import Vue from "vue";
-import Vuetify from "vuetify";
-import "vuetify/dist/vuetify.min.css";
-
-Vue.use(Vuetify);
-//added
-
 window.Vue = require("vue");
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
+Vue.component("app-init", require("./AppInit.vue").default);
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+import VueRouter from "vue-router";
+Vue.use(VueRouter);
 
-Vue.component(
-    "example-component",
-    require("./components/ExampleComponent.vue").default
-);
+import Vuetify from "vuetify";
+import "vuetify/dist/vuetify.min.css";
+Vue.use(Vuetify);
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+///Router
+import Dashboard from "./views/Dashboard";
+import Products from "./views/Products";
+
+const router = new VueRouter({
+    mode: "history",
+    routes: [
+        {
+            path: "/",
+            name: "dashboard",
+            component: Dashboard
+        },
+        {
+            path: "/products",
+            name: "products",
+            component: Products
+        }
+    ]
+});
 
 const app = new Vue({
-    el: "#app"
+    el: "#app",
+    router,
+    vuetify: new Vuetify()
 });
