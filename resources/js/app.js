@@ -13,6 +13,10 @@ import Vuetify from "vuetify";
 import "vuetify/dist/vuetify.min.css";
 Vue.use(Vuetify);
 
+import User from "./Helpers/User";
+window.User = User;
+console.log(User.loggedIn());
+
 ///Router
 import Dashboard from "./views/Dashboard";
 import Login from "./views/auth/Login";
