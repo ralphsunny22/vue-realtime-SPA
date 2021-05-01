@@ -8,18 +8,18 @@ class User {
             .then(res => this.responseAfterLogin(res))
             .catch(error => console.log(error.response.data));
     }
-    /////
+    /////////////////////////
     responseAfterLogin(res) {
         const access_token = res.data.access_token;
         const username = res.data.user;
         if (Token.isValid(access_token)) {
             AppStorage.store(username, access_token);
+            window.location = "/forum"; //refreshes the browser
         }
     }
 
     hasToken() {
         const storedToken = AppStorage.getToken();
-        //console.log(storedToken);
         if (storedToken) {
             return Token.isValid(storedToken) ? true : false;
         }
@@ -33,6 +33,7 @@ class User {
 
     logout() {
         AppStorage.clear();
+        window.location = "/forum";
     }
 
     name() {
