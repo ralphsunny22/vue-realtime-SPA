@@ -48,6 +48,11 @@ class User {
             return payload.sub;
         }
     }
+
+    //check if foreign user_id equals loggedIn user_id
+    own(user_id) {
+        return this.id() == user_id; //returns true/false
+    }
 }
 
 export default User = new User();

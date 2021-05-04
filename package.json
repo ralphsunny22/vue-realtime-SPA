@@ -27,6 +27,7 @@
     "dependencies": {
         "eslint": "^7.25.0",
         "vue-router": "^3.5.1",
+        "vue-simplemde": "^2.0.0",
         "vuetify": "^2.4.11"
     }
 }

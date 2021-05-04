@@ -20,12 +20,17 @@ window.User = User;
 
 window.EventBus = new Vue();
 
+// import md from "marked";
+// window.md = md;
+
 ///Router
 import Dashboard from "./views/Dashboard";
 import Login from "./views/auth/Login";
 import Register from "./views/auth/Register";
 import Logout from "./views/auth/Logout";
 import Forum from "./views/forum/Forum";
+import Read from "./views/forum/Read";
+import CreateQuestion from "./views/forum/CreateQuestion";
 import Products from "./views/Products";
 
 const router = new VueRouter({
@@ -55,6 +60,16 @@ const router = new VueRouter({
             path: "/forum",
             name: "forum",
             component: Forum
+        },
+        {
+            path: "/ask",
+            name: "create",
+            component: CreateQuestion
+        },
+        {
+            path: "/question/:slug",
+            component: Read,
+            name: "read"
         },
         {
             path: "/products",

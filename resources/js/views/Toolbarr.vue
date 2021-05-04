@@ -36,6 +36,7 @@ export default {
             loggedIn: User.loggedIn(),
             }
         },
+    //getting the logout emit event
     created(){
         EventBus.$on('logout', () => {
             User.logout()
