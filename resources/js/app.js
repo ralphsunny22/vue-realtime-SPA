@@ -6,6 +6,8 @@ window.Vue = require("vue");
 import Vue from "vue";
 
 Vue.component("app-init", require("./AppInit.vue").default);
+//this cpt is pointing to the home blade with '#app' id
+//Vue.component("AppHome", require("./views/AppHome.vue"));
 
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
@@ -31,6 +33,7 @@ import Logout from "./views/auth/Logout";
 import Forum from "./views/forum/Forum";
 import Read from "./views/forum/Read";
 import CreateQuestion from "./views/forum/CreateQuestion";
+import CreateCategory from "./views/category/CreateCategory";
 import Products from "./views/Products";
 
 const router = new VueRouter({
@@ -65,6 +68,11 @@ const router = new VueRouter({
             path: "/ask",
             name: "create",
             component: CreateQuestion
+        },
+        {
+            path: "/category",
+            name: "createCategory",
+            component: CreateCategory
         },
         {
             path: "/question/:slug",

@@ -55,4 +55,6 @@ class Question extends Model
         //return asset("api/question/$this->slug");
         return "/question/$this->slug";
     }
+
+    protected $with = ['replies']; //eager loading
 }

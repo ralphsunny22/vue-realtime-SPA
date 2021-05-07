@@ -15,7 +15,7 @@
 
                 <v-btn text link to="/forum">Forum</v-btn>
                 <v-btn text link to="/ask" v-if="loggedIn">Ask Question</v-btn>
-                <v-btn text link to="/category" v-if="loggedIn">Category</v-btn>
+                <v-btn text link to="/category" v-if="admin">Category</v-btn>
                 <v-btn text to="/logout" v-if="loggedIn">Logout</v-btn>
 
                 <v-btn text link to="/login" v-if="!loggedIn">Login</v-btn>
@@ -34,6 +34,7 @@ export default {
    data(){
         return {
             loggedIn: User.loggedIn(),
+            admin: User.admin()
             }
         },
     //getting the logout emit event

@@ -49,9 +49,14 @@ class User {
         }
     }
 
-    //check if foreign user_id equals loggedIn user_id
+    //check if foreign user_id (like question->user_id, reply->user_id) equals loggedIn user_id, at a certain time
     own(user_id) {
         return this.id() == user_id; //returns true/false
+    }
+
+    //can be 'role' column from users table
+    admin() {
+        return this.id() == 11;
     }
 }
 

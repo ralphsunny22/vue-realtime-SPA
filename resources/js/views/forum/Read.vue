@@ -10,10 +10,12 @@
         :data = question
         ></single-question>
 
-        <!-- <v-container>
+       <v-container>
             <replies :question="question"></replies>
+            <create-reply v-if="loggedIn" :questionSlug="question.slug"></create-reply>
+        </v-container>
 
-            <new-reply v-if="loggedIn" :questionSlug="question.slug"></new-reply>
+             <!-- <new-reply v-if="loggedIn" :questionSlug="question.slug"></new-reply>
             
             <div class="mt-4" v-else >
             <router-link to="/login">Login in to Reply</router-link>
@@ -25,8 +27,10 @@
 <script>
 import SingleQuestion from './SingleQuestion'
 import EditQuestion from './EditQuestion'
+import Replies from '../reply/Replies'
+import CreateReply from '../reply/CreateReply'
 export default {
-    components:{SingleQuestion, EditQuestion},
+    components:{SingleQuestion, EditQuestion, Replies, CreateReply},
     data(){
         return {
             question:null,
@@ -37,6 +41,12 @@ export default {
     created(){
         this.listen()
         this.getQuestion()
+    },
+
+    computed:{
+        loggedIn(){
+            return User.loggedIn()
+        }
     },
 
     methods:{
