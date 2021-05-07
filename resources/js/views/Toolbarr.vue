@@ -10,6 +10,8 @@
         </v-toolbar-title>
 
             <v-spacer></v-spacer>
+
+            <app-notification v-if="loggedIn"></app-notification>
             <v-toolbar-items class="hidden-sm-and-down">
                 
 
@@ -30,7 +32,12 @@
 
 <script>
 
+import AppNotification from './AppNotification.vue'
+
 export default {
+    components: {
+      AppNotification
+    },
    data(){
         return {
             loggedIn: User.loggedIn(),
