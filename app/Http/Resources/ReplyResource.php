@@ -20,8 +20,10 @@ class ReplyResource extends JsonResource
             'user' => $this->user->name,
             'user_id' => $this->user_id,
             'question_slug' => $this->question->slug,
-            // 'like_count' => $this->like->count(),
-            // 'liked' => !! $this->like->where('user_id', auth()->id())->count(),
+            'like_count' => $this->likes->count(),
+
+            //"!!" returns true or false. here we checked if auth user like b4 or not. will be used in Like.vue
+            'liked' => !!$this->likes->where('user_id', auth()->id())->count(),
             'created_at' => $this->created_at->diffForHumans()
         ];
     }
