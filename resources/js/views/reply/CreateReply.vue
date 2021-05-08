@@ -27,7 +27,7 @@ export default {
             axios.post(`/api/question/${this.questionSlug}/reply`,{body:this.body})
             .then(res => {
                 this.body = ''
-                EventBus.$emit('newReply',res.data.reply) //sending an event b4 using res data. Listenned at Replies.vue
+                EventBus.$emit('newReply',res.data.reply) //sending an event b4 using res data. Listenned at Replies.vue, and singleQuestion.vue(to increase replies count)
                 window.scrollTo(0,0)
             })
         }

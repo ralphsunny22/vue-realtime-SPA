@@ -53,7 +53,8 @@ export default {
         return{
             read: {},
             unRead: {},
-            unReadCount: 0
+            unReadCount: 0,
+            sound: "http://soundbible.com/mp3/glass_ping-Go445-1207030150.mp3"
         }
     },
 
@@ -64,13 +65,17 @@ export default {
 
         //also used in Replies.vue, for realtime reply cards
         Echo.private("App.User." + User.id()).notification(notification => {
-          //this.playSound();
+          this.playSound();
           this.unRead.unshift(notification);
           this.unReadCount++;
         });
     },
 
     methods:{
+          playSound() {
+          let alert = new Audio(this.sound);
+          alert.play();
+        },
         getNotifications(){
             axios.post('/api/notifications')
             .then(res => {
@@ -78,6 +83,7 @@ export default {
                 this.unRead = res.data.unRead
                 this.unReadCount = res.data.unRead.length
             })
+            .catch(error => Exception.handle(error));
         },
 
         readIt(notification) {

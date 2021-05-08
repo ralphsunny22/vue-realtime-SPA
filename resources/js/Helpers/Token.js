@@ -19,9 +19,26 @@ class Token {
         //console.log(this.decode(payload));
     }
 
+    // decode(payload) {
+    //     const jwtDecode = JSON.parse(atob(payload));
+    //     return jwtDecode;
+    // }
+
     decode(payload) {
-        const jwtDecode = JSON.parse(atob(payload));
-        return jwtDecode;
+        if (this.isBase64(payload)) {
+            const jwtDecode = JSON.parse(atob(payload));
+            return jwtDecode;
+        }
+        return false;
+    }
+
+    //random token check. Token is invalid error.
+    isBase64(str) {
+        try {
+            return btoa(atob(str)).replace(/=/g, "") == str;
+        } catch (err) {
+            return false;
+        }
     }
 }
 

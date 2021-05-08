@@ -38,6 +38,8 @@ methods:{
                     this.content.splice(index,1)                    
                 })
             })
+
+            //used for realtime newReply
             //also used in AppNotification.vue, for realtime unRead msgs
             Echo.private('App.User.' + User.id())
             .notification((notification) => {

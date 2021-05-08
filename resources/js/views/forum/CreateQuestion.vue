@@ -39,6 +39,7 @@
     <v-btn
       color="green"
       type="submit"
+      :disabled="disabled"
     >
       Create
     </v-btn>
@@ -75,7 +76,14 @@ export default {
         .then(res => this.$router.push(res.data.path))
         .catch(error => (this.errors = error.response ? error.response.data.errors : null));
     }
+  },
+
+    computed: {
+    //disable submit btn if form is not filled
+    disabled() {
+      return !(this.form.title && this.form.category_id && this.form.body);
     }
+  }
 }
 </script>
 
