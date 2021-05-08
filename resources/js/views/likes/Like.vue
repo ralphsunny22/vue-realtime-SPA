@@ -9,7 +9,7 @@
 
 <script>
 export default {
-    props:['content'], //from Reply.vue
+    props:['content'], //from Reply.vue. 'content is a single reply'
     data(){
         return {
             liked:this.content.liked, //from ReplyResource
@@ -21,6 +21,28 @@ export default {
         color(){
             return this.liked ? 'red' : 'red lighten-4';
         }
+    },
+
+    created(){
+
+        //public channel. Similarly used in "Replies.vue", to check for any "deleteReplyChannel"
+        Echo.channel('likeChannel')
+        .listen('LikeEvent', (e) => {
+            //console.log(e);
+            if(this.content.id == e.id){
+                ///this.liked = !this.liked
+                if(e.type == 1){
+                    this.count ++
+                    this.liked = true
+                } else{
+                   this.count --
+                    this.liked = false 
+                }
+                     
+                }
+        });
+
+        
     },
 
     methods:{

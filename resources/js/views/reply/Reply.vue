@@ -46,7 +46,7 @@ import md from 'marked'
 import EditReply from './EditReply'
 import Like from '../likes/Like'
 export default {
-    props:['data', 'index'], //from replies
+    props:['data', 'index'], //from replies. 'data is a single reply'
     components:{EditReply, Like},
     data(){
         return {

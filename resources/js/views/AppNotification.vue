@@ -61,6 +61,13 @@ export default {
         if(User.loggedIn()){
             this.getNotifications()
         }
+
+        //also used in Replies.vue, for realtime reply cards
+        Echo.private("App.User." + User.id()).notification(notification => {
+          //this.playSound();
+          this.unRead.unshift(notification);
+          this.unReadCount++;
+        });
     },
 
     methods:{

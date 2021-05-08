@@ -38,6 +38,23 @@ methods:{
                     this.content.splice(index,1)                    
                 })
             })
+            //also used in AppNotification.vue, for realtime unRead msgs
+            Echo.private('App.User.' + User.id())
+            .notification((notification) => {
+                this.content.unshift(notification.reply)
+            });
+
+            //public channel. Similarly used in "Like.vue", to check for any "likeChannel"
+            Echo.channel('deleteReplyChannel')
+            .listen('DeleteReplyEvent',(e) => {
+                for(let index = 0; index < this.content.length; index++){
+                    if(this.content[index].id == e.id){
+                        this.content.splice(index,1)
+                    }
+                }
+            })
+
+
         }
     }
 
